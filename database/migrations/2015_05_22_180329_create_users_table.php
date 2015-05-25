@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration {
 	{
 		//
 		Schema::create('users',function($table){
-			$table->primary('id');
+			$table->integer('id');
 			$table->string('screen_name');
 			$table->string('oauth_token');
 			$table->string('oauth_token_secret');

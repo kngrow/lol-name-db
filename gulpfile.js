@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
-
+var gulp = require('gulp');
+var bower = require('bower');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -13,4 +14,17 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.less('app.less');
+});
+var jsOutput = elixir.config.jsOutput;
+var bowerDir = elixir.config.bowerDir;
+var assetsDir = elixir.config.assetsDir;
+var paths = {
+  foundation : bowerDir+'/foundation/'
+};
+
+gulp.task('bower',function(){
+  return bower.commands.install([],{save:true},{})
+    on('end',function(data){
+      console.log(data);
+    });
 });

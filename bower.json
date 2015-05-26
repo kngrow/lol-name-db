@@ -1,0 +1,17 @@
+{
+  "name": "lolNamedb",
+  "version": "0.0.1",
+  "homepage": "kngrow.me",
+  "authors": [
+    "pino <ymc9.knit.p23@gmail.com>"
+  ],
+  "description": "lol-name-db",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

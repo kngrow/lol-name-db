@@ -13,6 +13,13 @@ class CreateUserTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('users',function($table){
+		$table->integer('id');
+		$table->string('screen_name');
+		$table->string('oauth_token');
+		$table->string('oauth_token_secret');
+
+	});
 	}
 
 	/**
@@ -23,6 +30,7 @@ class CreateUserTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('users');
 	}
 
 }

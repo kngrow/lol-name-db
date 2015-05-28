@@ -15,11 +15,13 @@ class CreateLolprofileTable extends Migration {
 		//
 		Schema::create('lol_profile',function($table){
 			$table->integer('id');
-			$table->integer('twitter_id')->unsigned();
-			$table->foreign('twitter_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('twitter_id')->unsigned()->unique();
+
 			$table->string('server');
 			$table->integer('level');
 			$table->integer('icon_id');
+
+			$table->foreign('twitter_id')->references('id')->on('users')->onDelete('cascade');
 			});
 	}
 
@@ -31,6 +33,7 @@ class CreateLolprofileTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('lol_profile');
 	}
 
 }

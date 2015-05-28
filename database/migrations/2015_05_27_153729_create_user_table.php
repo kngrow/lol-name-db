@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableOpponent extends Migration {
+class CreateUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,6 @@ class CreateTableOpponent extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('opponent',function($table){
-			$table->integer('opponent_id');
-			$table->string('opponent_name');
-			$table->primary('opponent_id');
-		});
 	}
 
 	/**
@@ -28,7 +23,6 @@ class CreateTableOpponent extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists('opponent');
 	}
 
 }

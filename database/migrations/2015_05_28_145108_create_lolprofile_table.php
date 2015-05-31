@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreateLolprofileTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,17 +13,17 @@ class CreateUsersTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('users',function($table){
+		Schema::create('lol_profile',function($table){
 			$table->integer('id')->unsigned();
 			$table->primary('id');
-			$table->string('screen_name');
-			$table->string('oauth_token');
-			$table->string('oauth_token_secret');
-			$table->string('lol_name');
-			$table->integer('lol_id')->unsigned()->unique()->nullable();
+			$table->unsignedInteger('twitter_id')->unsigned();
+
 			$table->string('server');
+			$table->integer('level');
 			$table->integer('icon_id');
-		});
+
+			$table->foreign('twitter_id')->references('id')->on('users')->onDelete('cascade');
+			});
 	}
 
 	/**
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::dropIfExists('users');
+		Schema::drop('lol_profile');
 	}
 
 }

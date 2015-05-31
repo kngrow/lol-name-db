@@ -15,15 +15,16 @@ class CreateNamelistTable extends Migration {
 		//
 		Schema::create('namelist',function($table){
 			$table->increments('id');
-			$table->integer('lol_id')->unsigned();
-			$table->foreign('lol_id')->references('lol_id')->on('users')->onDelete('cascade');
-			$table->integer('opponent_id')->unsigned();
-			$table->foreign('opponent_id')->references('lol_id')->on('opponent')->onDelete('cascade');
-			$table->integer('dual');
-			$table->string('champ');
+			$table->unsignedInteger('lol_id')->unsigned();
+
+			$table->string('champion');
 			$table->timestamp('last_battle');
 			$table->integer('win');
+			$table->unsignedInteger('opponent_id')->unsigned();
 			$table->integer('game_id');
+
+			$table->foreign('lol_id')->references('id')->on('lol_profile')->onDelete('cascade');
+			$table->foreign('opponent_id')->references('id')->on('opponent')->onDelete('cascade');
 		});
 	}
 
@@ -35,6 +36,7 @@ class CreateNamelistTable extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('namelist');
 	}
 
 }

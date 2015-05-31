@@ -14,12 +14,11 @@ class CreateUserTable extends Migration {
 	{
 		//
 		Schema::create('users',function($table){
-		$table->integer('id')->unique();
+		$table->integer('id')->unsigned();
 		$table->primary('id');
 		$table->string('screen_name');
 		$table->string('oauth_token');
 		$table->string('oauth_token_secret');
-
 	});
 	}
 

@@ -14,7 +14,8 @@ class CreateLolprofileTable extends Migration {
 	{
 		//
 		Schema::create('lol_profile',function($table){
-			$table->integer('id');
+			$table->integer('id')->unsigned();
+			$table->primary('id');
 			$table->unsignedInteger('twitter_id')->unsigned();
 
 			$table->string('server');

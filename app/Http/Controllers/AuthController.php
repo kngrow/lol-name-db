@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\User;
 class AuthController extends Controller {
 
 	/*
@@ -13,22 +16,67 @@ class AuthController extends Controller {
 	|
 	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest');
-	}
 
 	/**
 	 * Show the application welcome screen to the user.
 	 *
 	 * @return Response
 	 */
-	public  function TwitterAuth(){
+	public  function TwitterAuth(Request $request){
+		// get data from request
+	    $token  = $request->get('oauth_token');
+	    $verify = $request->get('oauth_verifier');
 
+	    // get twitter service
+	    $tw = \OAuth::consumer('Twitter');
+
+	    // check if code is valid
+
+	    // if code is provided get user data and sign in
+	    if ( ! is_null($token) && ! is_null($verify))
+	    {
+	        // This was a callback request from twitter, get the token
+	        $token = $tw->requestAccessToken($token, $verify);
+
+	        // Send a request with it
+	        $result = json_decode($tw->request('account/verify_credentials.json'), true);
+
+					$user = User::find($result['id']);
+
+					if( empty($user)){
+						$user = new User;
+						$user->id = $result['id'];
+					}
+
+
+					$user->screen_name = $result['screen_name'];
+					$user->name = $result['name'];
+					$user->oauth_token =$token->getRequestToken();
+					$user->oauth_token_secret = $token->getRequestTokenSecret();
+					$user->save();
+
+
+
+
+	        $message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+	        echo $message. "<br/>";
+					var_dump($token);
+
+	        //Var_dump
+	        //display whole array.
+	        dd($result);
+	    }
+	    // if not ask for permission first
+	    else
+	    {
+	        // get request token
+	        $reqToken = $tw->requestRequestToken();
+
+	        // get Authorization Uri sending the request token
+	        $url = $tw->getAuthorizationUri(['oauth_token' => $reqToken->getRequestToken()]);
+
+	        // return to twitter login url
+	        return redirect((string)$url);
+	    }
 	}
 }

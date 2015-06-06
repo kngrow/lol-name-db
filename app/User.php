@@ -30,5 +30,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+	public $timestamps = false;
 
+	public function Lol_Profile(){
+		return $this->hasOne("lol_profile",'twitter_id');
+	}
 }

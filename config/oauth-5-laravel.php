@@ -19,8 +19,8 @@ return [
 	'consumers' => [
 
 		'Twitter' => [
-	    'client_id'     => 'Your Twitter client ID',
-	    'client_secret' => 'Your Twitter Client Secret',
+	    'client_id'     => ENV['TWITTER_CONSUMER'],
+	    'client_secret' => ENV['TWITTER_SECRET'],
 	    // No scope - oauth1 doesn't need scope
 	],
 	]

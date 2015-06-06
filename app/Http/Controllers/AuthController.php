@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class WelcomeController extends Controller {
+class AuthController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,9 +28,7 @@ class WelcomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		return view('welcome');
-	}
+	public  function TwitterAuth(){
 
+	}
 }

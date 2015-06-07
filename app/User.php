@@ -33,6 +33,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public $timestamps = false;
 
 	public function Lol_Profile(){
-		return $this->hasOne("lol_profile",'twitter_id');
+		return $this->hasOne("Lol_Profile",'twitter_id');
 	}
 }

@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use App\Lol_Profile;
 class AuthController extends Controller {
 
 	/*
@@ -58,13 +59,14 @@ class AuthController extends Controller {
 
 
 
-	        $message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        echo $message. "<br/>";
-					var_dump($token);
+					$result  = Lol_Profile::Where('twitter_id',$result['id'])->get();
+					// $result  = Lol_Profile::Where('twitter_id',$result['id'])->get();
+
+
 
 	        //Var_dump
 	        //display whole array.
-	        dd($result);
+	        dd(count($result));
 	    }
 	    // if not ask for permission first
 	    else

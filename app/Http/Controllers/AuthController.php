@@ -63,7 +63,11 @@ class AuthController extends Controller {
 					// $result  = Lol_Profile::Where('twitter_id',$result['id'])->get();
 
 
-
+					if (count($result) == 0){
+							return Redirect::to('register');
+					} else {
+						return Redirect::to('user');
+					}
 	        //Var_dump
 	        //display whole array.
 	        dd(count($result));

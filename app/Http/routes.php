@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+// Route::get('/','PageController@showtop');
+
+Route::get('/login','AuthController@twitterAuth');

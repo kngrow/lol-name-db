@@ -12,19 +12,14 @@ var bower = require('bower');
  |
  */
 
-elixir(function(mix) {
-    mix.less('app.less');
-});
-var jsOutput = elixir.config.jsOutput;
-var bowerDir = elixir.config.bowerDir;
-var assetsDir = elixir.config.assetsDir;
-var paths = {
-  foundation : bowerDir+'/foundation/'
-};
-
-gulp.task('bower',function(){
-  return bower.commands.install([],{save:true},{})
-    on('end',function(data){
-      console.log(data);
-    });
+elixir(function(mix){
+  mix.copy('node_modules/foundation/scss','resources/assets/sass/foundation')
+  .sass('resources/assets/sass/style.scss')
+  .copy('node_modules/foundation/js','resources/assets/js/foundation')
+    .scripts([
+      'foundation/vendor/jquery.js',
+      'foundation/foundation/foundation.js',
+      'app.js'
+    ] , 'public/js/app.js','resources/assets/js')
+    .version(['css/style.css','js/app.js']);
 });

@@ -14,7 +14,7 @@ register - lol-name-db
 
 
 {!! Form::open( ['action' => 'AuthController@postRegister' ] ) !!}
-<h2>Summoner Nameを登録します。</h2>
+<h2>Summoner Nameを入力してください。</h2>
 <div class="row">
   <div class="large-2 columns">
     <label for="summoner_name" class="right inline">Summoner Name</label>

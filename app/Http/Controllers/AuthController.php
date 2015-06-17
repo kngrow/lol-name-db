@@ -94,4 +94,8 @@ class AuthController extends Controller
             return redirect('/');
         }
     }
+    public function postRegister(Request $request)
+    {
+      return json_encode($request->all());
+    }
 }

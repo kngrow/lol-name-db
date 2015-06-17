@@ -17,3 +17,5 @@ Route::get('/', 'WelcomeController@index');
 Route::get('/login','AuthController@twitterAuth');
 
 Route::get('/register',"AuthController@registerLoLProfile");
+
+Route::post('/register','AuthController@postRegister');

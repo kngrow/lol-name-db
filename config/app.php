@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Artdarek\OAuth\OAuthServiceProvider',
+		'Collective\Html\HtmlServiceProvider',
 	],
 
 	/*
@@ -193,8 +194,10 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		
+
 		'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+		'Form' => 'Collective\Html\FormFacade',
+		'Html' => 'Collective\Html\HtmlFacade',
 	],
 
 ];

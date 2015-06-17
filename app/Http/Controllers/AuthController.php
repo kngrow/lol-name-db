@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Lol_Profile;
 use Auth;
+use App\Http\Controller\View;
 
 class AuthController extends Controller
 {
@@ -64,7 +65,7 @@ class AuthController extends Controller
                     Auth::login(User::find($result['id']));
 
             if (count($lolprofile) == 0) {
-                return Redirect('/register');
+                return Redirect('register');
             } else {
                 return Redirect('user');
             }
@@ -87,9 +88,10 @@ class AuthController extends Controller
     public function registerLoLProfile()
     {
         if (Auth::check()) {
-            return 'true';
+            return View('register');
+
         } else {
-            return 'false';
+            return redirect('/');
         }
     }
 }

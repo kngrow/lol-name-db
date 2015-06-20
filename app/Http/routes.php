@@ -16,6 +16,12 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('/login','AuthController@twitterAuth');
 
-Route::get('/register',['middleware' => 'auth','uses' => "AuthController@registerLoLProfile"]);
 
-Route::post('/register',['middleware' => 'auth' , 'uses' => 'AuthController@postRegister' ]);
+
+Route::group(['middleware' => ['auth']], function(){
+
+  Route::get('/register' ,"AuthController@registerLoLProfile");
+
+  Route::post('/register', 'AuthController@postRegister' );
+
+});

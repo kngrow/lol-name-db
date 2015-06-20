@@ -85,22 +85,43 @@ class AuthController extends Controller
             return redirect((string) $url);
         }
     }
+    /**
+     * LoLのIDとかを登録する.
+     *
+     * @return view [description]
+     */
     public function registerLoLProfile()
     {
-        if (Auth::check()) {
-            return View('register');
-
-        } else {
-            return redirect('/');
-        }
+        return View('register');
     }
+    /**
+     * フォームから受け取る.
+     *
+     * @param Request $request [description]
+     *
+     * @return [type] [description]
+     */
     public function postRegister(Request $request)
     {
-          if(Auth::check()){
-            
-          }
+        $lolprofile = new Lol_Profile();
+        $inputs = \Request::all();
 
+        $lolprofile->twitter_id = Auth::user()->id;
+        $lolprofile->server = $inputs['server'];
+        $getProfile = $this->getLoLName($inputs['lol_myname'], $inputs['server']);
+        $lolprofile->summoner_name;
 
-      return json_encode($request->lol_myname);
+        dd($lolprofile);
+
+        return json_encode($request->lol_myname);
+    }
+    public function getLoLName($lol_name, $server)
+    {
+        $url = "https://{$server}.api.pvp.net/api/lol/{$server}/".env('LOL_VERSION')."/summoner/by-name/{$lol_name}?api_key=".env('LOL_API_KEY');
+        $profile = @file_get_contents($url);
+        if ($http_response_header[0] != 'HTTP/1.1 200 OK') {
+            return  $http_response_header[0];
+        }
+        return $profile;
     }
 }

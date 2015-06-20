@@ -23,14 +23,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	// protected $fillable = ['name', 'email', 'password'];
-	// 
+	//
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token'];
+	protected $hidden = ['oauth_token', 'oauth_token_secret'];
 	public $timestamps = false;
 
 	public function Lol_Profile(){

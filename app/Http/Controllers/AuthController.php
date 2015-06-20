@@ -96,6 +96,11 @@ class AuthController extends Controller
     }
     public function postRegister(Request $request)
     {
-      return json_encode($request->all());
+          if(Auth::check()){
+            
+          }
+
+
+      return json_encode($request->lol_myname);
     }
 }

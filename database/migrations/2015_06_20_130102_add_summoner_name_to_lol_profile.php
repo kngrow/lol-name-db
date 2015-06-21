@@ -14,7 +14,7 @@ class AddSummonerNameToLolProfile extends Migration {
 	{
 		//
 		Schema::table('lol_profile' , function($table){
-			$table->string('summoner_name');
+			$table->string('summoner_name')->after('id');
 		});
 	}
 

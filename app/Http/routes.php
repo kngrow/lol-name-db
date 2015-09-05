@@ -23,5 +23,5 @@ Route::group(['middleware' => ['auth']], function(){
   Route::get('/register' ,"AuthController@registerLoLProfile");
 
   Route::post('/register', 'AuthController@postRegister' );
-
 });
+  Route::get('/user/{id}' ,'UserController@show');

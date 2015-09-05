@@ -24,4 +24,4 @@ Route::group(['middleware' => ['auth']], function(){
 
   Route::post('/register', 'AuthController@postRegister' );
 });
-  Route::get('/user/{id}' ,'UserController@show');
+  Route::get('/user' ,'UserController@show');
